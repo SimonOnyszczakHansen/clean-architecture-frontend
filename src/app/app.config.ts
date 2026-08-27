@@ -3,12 +3,21 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { Register } from './interfaceadapters/register/register';
-import { RegisterRepository } from './domain/ports/register-repository.port';
+import { RegisterRepositoryPort } from './domain/ports/register-repository.port';
+import { RegisterUserUseCase } from './domain/usecase/register-user.usecase';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-	{ provide: RegisterRepository, useClass: Register }
+	{ 
+    provide: RegisterRepositoryPort, useClass: Register 
+  },
+  {
+    // RegisterUserUseCase has no @Injectable (since we want to follow clean architecture principles), so it needs manual wiring here
+    provide: RegisterUserUseCase,
+    useFactory: (repo: RegisterRepositoryPort) => new RegisterUserUseCase(repo),
+    deps: [RegisterRepositoryPort]
+  }
   ]
 };

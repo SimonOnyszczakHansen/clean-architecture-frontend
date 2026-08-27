@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
+import { RegisterRepositoryPort } from '../../domain/ports/register-repository.port';
+import { User } from '../../domain/entities/user.entity';
 import { RegisterResponseDto } from './dto/register-response.dto';
-import { RegisterRepository } from '../../domain/ports/register-repository.port';
 
 @Injectable({
 	providedIn: 'root',
 })
-export class Register implements RegisterRepository {
+export class Register implements RegisterRepositoryPort {
 	constructor(private http: HttpClient) { }
 
-	registerUser(email: string, firstName: string, lastName: string, password: string, role: string): Promise<RegisterResponseDto> {
+	registerUser(email: string, firstName: string, lastName: string, password: string, role: string): Promise<User> {
 		const request = { email, firstName, lastName, password, role };
-		return firstValueFrom(this.http.post<RegisterResponseDto>('/api/users', request));
+		const dto = firstValueFrom(this.http.post<RegisterResponseDto>('/api/users', request));
+		return dto.then(response => new User(response.id, response.email, response.firstName, response.lastName, response.role));
 	}
 }

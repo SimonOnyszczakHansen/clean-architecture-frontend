@@ -7,6 +7,7 @@ import { RegisterUserUseCase } from '../../../domain/usecase/register-user.useca
 	styleUrl: './register-page.css',
 })
 export class RegisterPage {
+	// Presentation layer should only depend on the domain layer hence why we dont call the register/HTTP adapter directly
 	constructor(private registerUser: RegisterUserUseCase) { }
 
 	register(email: string, firstName: string, lastName: string, password: string, role: string): void {
