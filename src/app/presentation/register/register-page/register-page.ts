@@ -1,22 +1,17 @@
 import { Component } from '@angular/core';
 import { RegisterUserUseCase } from '../../../domain/usecase/register-user.usecase';
 @Component({
-  selector: 'app-register-page',
-  imports: [],
-  templateUrl: './register-page.html',
-  styleUrl: './register-page.css',
+	selector: 'app-register-page',
+	imports: [],
+	templateUrl: './register-page.html',
+	styleUrl: './register-page.css',
 })
 export class RegisterPage {
-	constructor(private registerUser: RegisterUserUseCase) {}
+	constructor(private registerUser: RegisterUserUseCase) { }
 
 	register(email: string, firstName: string, lastName: string, password: string, role: string): void {
-		this.registerUser.execute(email, firstName, lastName, password, role).subscribe({
-			next: (user) => {
-				console.log('User registered:', user);
-			},
-			error: (error) => {
-				console.error('Error registering user:', error);
-			},
-		});
+		this.registerUser.execute(email, firstName, lastName, password, role)
+			.then(user => console.log('User registered:', user))
+			.catch(error => console.error('Error registering user:', error));
 	}
 }
