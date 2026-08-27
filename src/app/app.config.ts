@@ -2,10 +2,13 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
+import { Register } from './interfaceadapters/register/register';
+import { REGISTER_REPOSITORY } from './domain/ports/register-repository.token';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes)
+    provideRouter(routes),
+	{ provide: REGISTER_REPOSITORY, useClass: Register }
   ]
 };

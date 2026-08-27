@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { RegisterUserUseCase } from '../../../domain/usecase/register-user.usecase';
 @Component({
   selector: 'app-register-page',
   imports: [],
@@ -7,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrl: './register-page.css',
 })
 export class RegisterPage {
+	constructor(private registerUser: RegisterUserUseCase) {}
 
+	register(email: string, firstName: string, lastName: string, password: string, role: string): void {
+		this.registerUser.execute(email, firstName, lastName, password, role).subscribe({
+			next: (user) => {
+				console.log('User registered:', user);
+			},
+			error: (error) => {
+				console.error('Error registering user:', error);
+			},
+		});
+	}
 }

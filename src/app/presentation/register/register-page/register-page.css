@@ -1,0 +1,49 @@
+#register {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+#register-form {
+	display: flex;
+	flex-direction: column;
+	width: 25vw;
+	height: 60vh;
+	background-color: #f2f2f2;
+	padding: 20px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+#register-button {
+    background-color: #000;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 40%;
+    margin: 0 auto;
+    margin-top: auto;
+    margin-bottom: 10px;
+}
+
+#email, #first-name, #last-name, #password, #confirm-password {
+	padding: 7px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	margin-bottom: 10px;
+}
+
+.input-label {
+	margin-bottom: 5px;
+	margin-top: 10px;
+}
+
+#login-text {
+	font-size: 12px;
+	text-align: center;
+	margin-top: 0;
+	margin-bottom: 0;
+}
