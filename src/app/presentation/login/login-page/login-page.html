@@ -1,10 +1,10 @@
 <div id="login">
 	<form id="login-form">
 		<label for="email" class="input-label">Email</label>
-		<input type="text" id="email" name="email" id="email-input" autocomplete="email">
+		<input type="text" id="email" name="email" id="email-input" #email autocomplete="email">
 		<label for="password" class="input-label">Adgangskode</label>
-		<input type="password" id="password" name="password" id="password-input" autocomplete="current-password">
+		<input type="password" id="password" name="password" id="password-input" #password autocomplete="current-password">
 		<p id="register-text">har du ikke en konto? <a href="/register">Opret dig her</a></p>
-		<button type="submit" id="login-button">Login</button>
+		<button type="button" id="login-button" (click)="login(email.value, password.value)">Login</button>
 	</form>
 </div>
