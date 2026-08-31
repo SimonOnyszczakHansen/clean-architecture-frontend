@@ -3,7 +3,10 @@
 		<label for="email" class="input-label">Email</label>
 		<input type="text" id="email" name="email" id="email-input" #email autocomplete="email">
 		<label for="password" class="input-label">Adgangskode</label>
-		<input type="password" id="password" name="password" id="password-input" #password autocomplete="current-password">
+		<div class="password-input-container">
+			<input type="password" name="password" id="password-input" #password autocomplete="current-password">
+			<app-hide-password-toggle [target]="password"></app-hide-password-toggle>
+		</div>
 		<p id="register-text">har du ikke en konto? <a href="/register">Opret dig her</a></p>
 		<button type="button" id="login-button" (click)="login(email.value, password.value)">Login</button>
 	</form>
