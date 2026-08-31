@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { LoginRepositoryPort } from '../../domain/ports/login-repository.port';
 import { firstValueFrom } from 'rxjs';
 import { User } from '../../domain/entities/user.entity';
+import { LoginResponseDto } from './dto/login-response.dto';
+import { LoginResult } from '../../domain/ports/login-result';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +12,11 @@ import { User } from '../../domain/entities/user.entity';
 export class Login implements LoginRepositoryPort {
 	constructor(private http: HttpClient) {}
 
-	login(email: string, password: string): Promise<User> {
-  		const request = { email, password };
-  		return firstValueFrom(this.http.post<User>('/api/login', request));
+	async login(email: string, password: string): Promise<LoginResult> {
+		const dto = await firstValueFrom(this.http.post<LoginResponseDto>('/api/login', { email, password }));
+		return {
+			user: new User(dto.user.id, dto.user.firstName, dto.user.lastName, dto.user.email, dto.user.role),
+			token: dto.token,
+		};
 	}
 }

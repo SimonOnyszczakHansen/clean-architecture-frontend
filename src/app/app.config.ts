@@ -1,5 +1,6 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 import { routes } from './app.routes';
 import { Register } from './interfaceadapters/register/register';
@@ -8,27 +9,35 @@ import { RegisterUserUseCase } from './domain/usecase/register-user.usecase';
 import { LoginRepositoryPort } from './domain/ports/login-repository.port';
 import { Login } from './interfaceadapters/login/login';
 import { LoginUseCase } from './domain/usecase/login.usecase';
+import { TokenStoragePort } from './domain/ports/token-storage.port';
+import { LocalStorageTokenStorage } from './interfaceadapters/login/local-storage-token-storage';
+import { authInterceptor } from './infrastructure/config/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideRouter(routes),
-	{ 
-    provide: RegisterRepositoryPort, useClass: Register 
-  },
-  {
-    // RegisterUserUseCase has no @Injectable (since we want to follow clean architecture principles), so it needs manual wiring here
-    provide: RegisterUserUseCase,
-    useFactory: (repo: RegisterRepositoryPort) => new RegisterUserUseCase(repo),
-    deps: [RegisterRepositoryPort]
-  },
-  {
-    provide: LoginRepositoryPort, useClass: Login
-  },
-  {
-    provide: LoginUseCase,
-    useFactory: (repo: LoginRepositoryPort) => new LoginUseCase(repo),
-    deps: [LoginRepositoryPort]
-  }
-  ]
+	providers: [
+		provideBrowserGlobalErrorListeners(),
+		provideRouter(routes),
+		provideHttpClient(withInterceptors([authInterceptor])),
+		{
+			provide: RegisterRepositoryPort, useClass: Register
+		},
+		{
+			// RegisterUserUseCase has no @Injectable (since we want to follow clean architecture principles), so it needs manual wiring here
+			provide: RegisterUserUseCase,
+			useFactory: (repo: RegisterRepositoryPort) => new RegisterUserUseCase(repo),
+			deps: [RegisterRepositoryPort]
+		},
+		{
+			provide: LoginRepositoryPort, useClass: Login
+		},
+		{
+			provide: LoginUseCase,
+			useFactory: (repo: LoginRepositoryPort, tokenStorage: TokenStoragePort) =>
+				new LoginUseCase(repo, tokenStorage),
+			deps: [LoginRepositoryPort, TokenStoragePort]
+		},
+		{
+			provide: TokenStoragePort, useClass: LocalStorageTokenStorage
+		}
+	]
 };

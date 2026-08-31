@@ -1,5 +1,5 @@
-import { User } from '../entities/user.entity';
+import { LoginResult } from './login-result';
 
 export abstract class LoginRepositoryPort {
-	abstract login(email: string, password: string): Promise<User>;
+	abstract login(email: string, password: string): Promise<LoginResult>;
 }
