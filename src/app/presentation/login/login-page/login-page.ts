@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LoginUseCase } from '../../../domain/usecase/login.usecase';
 
 @Component({
   selector: 'app-login-page',
   imports: [],
   templateUrl: './login-page.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './login-page.css',
 })
 export class LoginPage {

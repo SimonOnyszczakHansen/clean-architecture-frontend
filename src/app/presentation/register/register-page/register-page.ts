@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RegisterUserUseCase } from '../../../domain/usecase/register-user.usecase';
 @Component({
 	selector: 'app-register-page',
 	imports: [],
 	templateUrl: './register-page.html',
+	changeDetection: ChangeDetectionStrategy.Eager,
 	styleUrl: './register-page.css',
 })
 export class RegisterPage {
