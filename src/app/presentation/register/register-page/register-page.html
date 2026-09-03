@@ -7,9 +7,15 @@
 		<label for="last-name" class="input-label">Efternavn</label>
 		<input type="text" id="last-name" name="last-name" #lastName autocomplete="family-name">
 		<label for="password" class="input-label">Adgangskode</label>
-		<input type="password" id="password" name="password" #password autocomplete="new-password">
+		<div class="password-input-container">
+			<input type="password" id="password" name="password" #password autocomplete="new-password">
+			<app-hide-password-toggle [target]="password"></app-hide-password-toggle>
+		</div>
 		<label for="confirm-password" class="input-label">Bekræft adgangskode</label>
-		<input type="password" id="confirm-password" name="confirm-password" #confirmPassword autocomplete="new-password">
+		<div class="password-input-container">
+			<input type="password" id="confirm-password" name="confirm-password" #confirmPassword autocomplete="new-password">
+			<app-hide-password-toggle [target]="confirmPassword"></app-hide-password-toggle>
+		</div>
 		<p id="login-text">har du allerede en konto? <a href="/login">Log ind her</a></p>
 		<button type="button" id="register-button" (click)="register(email.value, firstName.value, lastName.value, password.value, role.value)">Opret</button>
 		<input type="hidden" #role value="user">

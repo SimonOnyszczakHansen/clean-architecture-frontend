@@ -33,7 +33,6 @@
 	padding: 7px;
 	border-radius: 5px;
 	border: 1px solid #ccc;
-	margin-bottom: 10px;
 }
 
 .input-label {
@@ -47,3 +46,14 @@
 	margin-top: 0;
 	margin-bottom: 0;
 }
+
+.password-input-container {
+	position: relative;
+}
+
+.password-input-container input {
+	width: 100%;
+	box-sizing: border-box;
+	margin-bottom: 0;
+}
+
