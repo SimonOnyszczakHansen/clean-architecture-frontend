@@ -3,36 +3,40 @@
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
+	padding: 20px;
+	box-sizing: border-box;
 }
 
 #login-form {
 	display: flex;
 	flex-direction: column;
-	width: 25vw;
-	height: 40vh;
+	width: 100%;
+	max-width: 400px;
+	min-height: 40vh;
 	background-color: #f2f2f2;
 	padding: 20px;
 	border-radius: 5px;
 	border: 1px solid #ccc;
+	box-sizing: border-box;
 }
 
 #login-button {
-    background-color: #000;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 40%;
-    margin: 0 auto;
-    margin-top: auto;
-    margin-bottom: 10px;
+	background-color: #000;
+	color: white;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 40%;
+	margin: 0 auto;
+	margin-top: auto;
+	margin-bottom: 10px;
 }
 
 #email-input, #password-input {
-    padding: 7px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+	padding: 7px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
 }
 
 .input-label {
