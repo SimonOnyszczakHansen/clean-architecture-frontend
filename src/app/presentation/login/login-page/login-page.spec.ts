@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginPage } from './login-page';
+import { LoginUseCase } from '../../../domain/usecase/login.usecase';
 
 describe('LoginPage', () => {
   let component: LoginPage;
@@ -8,7 +9,10 @@ describe('LoginPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LoginPage]
+      imports: [LoginPage],
+      providers: [
+        { provide: LoginUseCase, useValue: { login: vi.fn().mockResolvedValue({}) } }
+      ]
     })
     .compileComponents();
 
