@@ -2,7 +2,7 @@ import { inject } from "@angular/core";
 import { CanActivateFn, Router } from "@angular/router";
 import { TokenStoragePort } from "../../domain/ports/token-storage.port";
 
-export const AuthGuard: CanActivateFn = () => {
+export const authGuard: CanActivateFn = () => {
 	const tokenStorage = inject(TokenStoragePort);
 	const router = inject(Router);
 	const token = tokenStorage.get();
