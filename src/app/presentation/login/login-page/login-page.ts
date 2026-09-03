@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LoginUseCase } from '../../../domain/usecase/login.usecase';
 import { HidePasswordToggle } from '../../shared-ui/hide-password-toggle/hide-password-toggle';
 
+// this is a test
 @Component({
   selector: 'app-login-page',
   imports: [HidePasswordToggle],
