@@ -1,12 +1,11 @@
 import { inject } from "@angular/core";
 import { CanActivateFn, Router } from "@angular/router";
-import { TokenStoragePort } from "../../domain/ports/token-storage.port";
+import { AuthStatusPort } from "../../domain/ports/auth-status.port";
 
-export const authGuard: CanActivateFn = () => {
-	const tokenStorage = inject(TokenStoragePort);
+export const authGuard: CanActivateFn = async () => {
+	const authStatus = inject(AuthStatusPort)
 	const router = inject(Router);
-	const token = tokenStorage.get();
-	if (token && !token.isExpired()) {
+	if (await authStatus.isAuthenticated()) {
 		return true;
 	}
 	router.navigate(['/login']);
