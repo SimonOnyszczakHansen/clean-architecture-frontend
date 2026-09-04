@@ -16,7 +16,10 @@ export class Login implements LoginRepositoryPort {
 		const dto = await firstValueFrom(this.http.post<LoginResponseDto>('/api/login', { email, password }));
 		return {
 			user: new User(dto.user.id, dto.user.firstName, dto.user.lastName, dto.user.email, dto.user.role),
-			token: dto.token,
 		};
+	}
+
+	async logout(): Promise<void> {
+		await firstValueFrom(this.http.post('/api/logout', {}));
 	}
 }

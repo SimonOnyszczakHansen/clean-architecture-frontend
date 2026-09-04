@@ -2,7 +2,7 @@ name: Angular CI
 
 on:
   push:
-    branches: [ "**" ]
+    branches: [ "master", "team/**" ]
   pull_request:
     branches: [ "**" ]
 
