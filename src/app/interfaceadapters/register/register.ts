@@ -1,3 +1,4 @@
+// the actual HTTP call for registering a user; fulfills RegisterRepositoryPort so the domain stays framework-free
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RegisterResponseDto } from './dto/register-response.dto';

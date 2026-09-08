@@ -1,3 +1,8 @@
+// shape of the raw JSON the backend sends back from /api/login
 export interface LoginResponseDto {
-	user: {id: string, firstName: string, lastName: string, email: string, role: string};
+	id: string;
+	firstName: string;
+	lastName: string;
+	email: string;
+	role: string;
 }

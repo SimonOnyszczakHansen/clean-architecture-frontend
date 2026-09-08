@@ -1,3 +1,4 @@
+// the actual HTTP calls for login/logout; fulfills LoginRepositoryPort so the domain stays framework-free
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginRepositoryPort } from '../../domain/ports/login-repository.port';
@@ -15,7 +16,7 @@ export class Login implements LoginRepositoryPort {
 	async login(email: string, password: string): Promise<LoginResult> {
 		const dto = await firstValueFrom(this.http.post<LoginResponseDto>('/api/login', { email, password }));
 		return {
-			user: new User(dto.user.id, dto.user.firstName, dto.user.lastName, dto.user.email, dto.user.role),
+			user: new User(dto.id, dto.firstName, dto.lastName, dto.email, dto.role),
 		};
 	}
 
