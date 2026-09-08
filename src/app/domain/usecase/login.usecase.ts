@@ -1,3 +1,4 @@
+// handles login/logout logic, doesn't know about HTTP or cookies
 import { User } from '../entities/user.entity';
 import { LoginRepositoryPort } from '../ports/login-repository.port';
 

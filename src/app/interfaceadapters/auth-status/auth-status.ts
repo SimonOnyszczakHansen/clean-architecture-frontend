@@ -1,3 +1,4 @@
+// talks to the backend to check login status, since the auth cookie can't be read directly
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom, catchError, of } from 'rxjs';

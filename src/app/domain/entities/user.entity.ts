@@ -1,3 +1,4 @@
+// plain user data, kept free of Angular/HTTP code on purpose
 export class User {
 	constructor(
 		public readonly id: string,

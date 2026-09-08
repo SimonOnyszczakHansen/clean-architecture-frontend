@@ -1,3 +1,4 @@
+// Angular-specific route protection; just translates AuthStatusPort's answer into a redirect
 import { inject } from "@angular/core";
 import { CanActivateFn, Router } from "@angular/router";
 import { AuthStatusPort } from "../../domain/ports/auth-status.port";
