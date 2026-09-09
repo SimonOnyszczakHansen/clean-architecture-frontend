@@ -61,6 +61,14 @@
 	margin-bottom: 0;
 }
 
+#password-mismatch-text {
+	color: red;
+	font-size: 12px;
+	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 0;
+}
+
 @media (max-width: 770px) {
     #register-form {
         min-height: 70vh;

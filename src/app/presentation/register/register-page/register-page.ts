@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal} from '@angular/core';
 import { RegisterUserUseCase } from '../../../domain/usecase/register-user.usecase';
 import { HidePasswordToggle } from '../../shared-ui/hide-password-toggle/hide-password-toggle';
 @Component({
@@ -12,9 +12,23 @@ export class RegisterPage {
 	// Presentation layer should only depend on the domain layer hence why we dont call the register/HTTP adapter directly
 	constructor(private registerUser: RegisterUserUseCase) { }
 
-	register(email: string, firstName: string, lastName: string, password: string, role: string): void {
+	passwordsMismatch = signal(false);
+
+	checkPasswordsMatch(password: string, confirmPassword: string): void {
+		this.passwordsMismatch.set(confirmPassword.length > 0 &&  password !== confirmPassword);
+	}
+
+	register(email: string, firstName: string, lastName: string, password: string, confirmPassword: string, role: string): void {
+		if(password !== confirmPassword) {
+			this.passwordsMismatch.set(true);
+			return;
+		}
 		this.registerUser.execute(email, firstName, lastName, password, role)
 			.then(user => console.log('User registered:', user))
 			.catch(error => console.error('Error registering user:', error));
+	}
+
+	blockInvalidCharacters(input: HTMLInputElement) {
+		input.value = input.value.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ\s\-]/g, '');
 	}
 }

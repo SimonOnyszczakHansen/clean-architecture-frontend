@@ -6,8 +6,7 @@ export class LoginUseCase {
 	constructor(private loginRepositoryPort: LoginRepositoryPort) {}
 
 	async login(email: string, password: string): Promise<User> {
-		const { user } = await this.loginRepositoryPort.login(email, password);
-		return user;
+		return this.loginRepositoryPort.login(email, password);
 	}
 
 	async logout(): Promise<void> {
