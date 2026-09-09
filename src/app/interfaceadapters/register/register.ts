@@ -12,7 +12,7 @@ import { User } from '../../domain/entities/user.entity';
 export class Register implements RegisterRepositoryPort {
 	constructor(private http: HttpClient) { }
 
-	registerUser(email: string, firstName: string, lastName: string, password: string, role: string): Promise<RegisterResponseDto> {
+	registerUser(email: string, firstName: string, lastName: string, password: string, role: string): Promise<User> {
 		const request = { email, firstName, lastName, password, role };
 		return firstValueFrom(this.http.post<RegisterResponseDto>('/api/users', request))
 			.then(dto => new User(dto.id, dto.firstName, dto.lastName, dto.email, dto.role));
