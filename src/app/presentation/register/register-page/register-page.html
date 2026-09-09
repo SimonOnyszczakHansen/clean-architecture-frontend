@@ -16,7 +16,7 @@
 			<input type="password" id="confirm-password" name="confirm-password" #confirmPassword autocomplete="new-password" (input)="checkPasswordsMatch(password.value, confirmPassword.value)">
 			<app-hide-password-toggle [target]="confirmPassword"></app-hide-password-toggle>
 		</div>
-			<p id="password-mismatch-text" [class.visible]="passwordsMismatch()">Adgangskoderne matcher ikke</p>
+		<p id="password-mismatch-text" [class.visible]="passwordsMismatch()">Adgangskoderne matcher ikke</p>
 		<p id="login-text">har du allerede en konto? <a href="/login">Log ind her</a></p>
 		<button type="button" id="register-button" (click)="register(email.value, firstName.value, lastName.value, password.value, confirmPassword.value, role.value)">Opret</button>
 		<input type="hidden" #role value="user">
